@@ -5,7 +5,7 @@ MSPM0 micros are an important new device from TI
 
 Being brand new, there's not a lot of public designs done that aren't hefty launchpads or niche additions to large reference designs. 
 
-I was motivated to do a project to make myself a tiny litle M0 dev board similar to the [STM Nucleo boards.](https://www.digikey.com/en/products/detail/stmicroelectronics/NUCLEO-F303K8/5428805/)
+I was motivated to do a project to make myself a tiny litle M0 dev board similar to the [STM Nucleo boards.](https://www.st.com/content/ccc/resource/technical/document/data_brief/b1/d8/13/d4/b0/b7/4b/6e/DM00214578.pdf/files/DM00214578.pdf/jcr:content/translations/en.DM00214578.pdf)
 
 
 <img src="img/M0Launchpad.png_large" alt="drawing" width="600"/>
