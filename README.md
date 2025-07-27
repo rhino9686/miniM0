@@ -22,6 +22,20 @@ This can be done with schematic/PCB software of your choosing. I chose to go wit
 
 ### Part Selections
 
+You will see for an equivalent STM32 processor from STMicro, there is a requirement for heavy input capacitance on the VDD and AVDD pins. MSPM0 has a lesser requirement. You will simply need a small 1-3 capacitors equaling roughly 10 uF, with the option to add more based on your application. I stuck with the basic 10u.
+<img src="img/stm32Cap.png" alt="drawing" width="600"/>
+
+The MSP takes in a VIN range of 1.62-3.6V, so one can easily make a USB port-powered input and step down the voltage to 3.3V.
+
+My design used the basic USB-C (non-PD) port that negotiates a 5V, 3A rail with any common USB-C cord. In any full design, one will want ESD protection for this port, since it connects to an external source of static. I included a basic ESD diote for this, the TPD6E004.
+<img src="img/simpleUSB.png" alt="drawing" width="600"/>
+<img src="img/esdDiode.png" alt="drawing" width="600"/>
+
+Finally, I have n LDO that takes the voltage down from 5V to 3.3V for the MSPM0. I used the TPS7A20 for this.
+<img src="img/LDO.png" alt="drawing" width="600"/>
+
+
+Once all the main components are gathered on the same schematic as this, one can proceed to fill out all the proper connections and passives.
 
 <img src="img/bigHeaders.png" alt="drawing" width="600"/>
 
@@ -32,7 +46,7 @@ This can be done with schematic/PCB software of your choosing. I chose to go wit
 
 <img src="img/ConnectorsHeaders.png" alt="drawing" width="600"/>
 
-<img src="img/LDO.png" alt="drawing" width="600"/>
+
 
 <img src="img/esdDiode.png" alt="drawing" width="600"/>
 
