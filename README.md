@@ -1,7 +1,7 @@
 # My first M0 Design: Mini M0
 ### Motivations
 
-MSPM0 micros are an important new device from TI
+MSPM0 microcontrollers are an important new device from TI.
 
 Being brand new, there's not a lot of public designs done that aren't hefty launchpads or niche additions to large reference designs. 
 
@@ -13,19 +13,19 @@ I was motivated to do a project to make myself a tiny litle M0 dev board similar
 <img src="img/NUCLEO-F303K8.jpg" alt="drawing" width="200"/>
 
 
-Instead of making large bulky M0 launchpad, I'll make a very minimalist board with basic GPIO pins and a programming header.
+Instead of making a large bulky M0 launchpad, I made a very minimalist board with basic GPIO pins and a programming header. In this document I will show how to recreate my work step by step for anyone making their first MSPM0 design.
 
 
-There are quite a few MSPM0 models to choose from. We will use the MSPM0G3507 as our MCU as it is smack dab in the middle of the catalog in terms of price and performance. The lessons from this design will scale up to more complex devices and down to smaller cost-sensitive ones.
+There are quite a few MSPM0 models to choose from. I used the MSPM0G3507 as our MCU as it is smack dab in the middle of the catalog in terms of price and performance. The lessons from this design will scale up to more complex devices and down to smaller cost-sensitive ones.
 ### How to start
 
-This can be done with schematic/PCB software of your choosing. I chose to go with KiCAD in this. The first step is importing the MSPM0G3507 schematic symbol and footprint into a blank schematic. I in particular used the *MSPM0G3507SRHBR* package
+This can be done with schematic/PCB software of your choosing. I chose to go with KiCAD in this. The first step is importing the MSPM0G3507 schematic symbol and footprint into a blank schematic. I in particular used the *MSPM0G3507SRHBR* package.
 
 <img src="img/blankMCU.png" alt="drawing" width="600"/>
 
 ### Part Selections
 
-You will see for an equivalent STM32 processor from STMicro, there is a requirement for heavy input capacitance on the VDD and AVDD pins. MSPM0 has a lesser requirement. You will simply need a small 1-3 capacitors equaling roughly 10 uF, with the option to add more based on your application. I stuck with the basic 10u.
+You will see for an equivalent STM32 processor from STMicro, there is a requirement for heavy input capacitance on the VDD and AVDD pins. MSPM0 has a lesser requirement. One simply needs a small 1-3 capacitors equaling roughly 10 uF, with the option to add more based on your application. I stuck with the basic 10u.
 <img src="img/stm32Cap.png" alt="drawing" width="600"/>
 
 The MSP takes in a VIN range of 1.62-3.6V, so one can easily make a USB port-powered input and step down the voltage to 3.3V.
@@ -50,8 +50,10 @@ For the USB-C port, I recreated the connections found at this link: https://foru
 
 <img src="img/myUSBC.png" alt="drawing" width="600"/>
 
-I have also wired the 5V line to the ESD diode to protect against voltage spikes from connecting the USB cable.
+I also wired the 5V line to the ESD diode to protect against voltage spikes from connecting the USB cable.
+
 <img src="img/finishedESD.png" alt="drawing" width="600"/>
+
 Note: If you were using the D+ and D- lines of the USB port, you'd connect them to these IOx pins, but we left them floating here. The CC1 and CC2 lines can alos be protected optionally, but that's out of the scope of this design.
 
 Finally, we connect the 5V line to a 5V-3V3 LDO to provide a suitable voltage for our M0 MCU.
@@ -59,7 +61,9 @@ Finally, we connect the 5V line to a 5V-3V3 LDO to provide a suitable voltage fo
 <img src="img/LDO_popped.png" alt="drawing" width="600"/>
 
 That's the basics. With these connectiond, our MCU is good to power up. It won't do too much until we add some way of connecting GPIO, activating peripherals, and adding a programming header.
+
 <img src="img/processorSchem.png" alt="drawing" width="600"/>
+
 To make things easier organizationally, I like to add labels to every MCU pin, then reference label in other parts of schematic.
 
 ### Communication
@@ -68,7 +72,8 @@ To activate our communication lines, we will need to assign pins for I2C and UAR
 
 To do this, I will open up my selected device in Code Composer Studio. Once again, I am using MSPM0G3507.
 
-To download CCS, you can find it here.
+To download CCS, you can find it [here](https://www.st.com/content/ccc/resource/technical/document/data_brief/b1/d8/13/d4/b0/b7/4b/6e/DM00214578.pdf/files/DM00214578.pdf/jcr:content/translations/en.DM00214578.pdf)
+
 
 There's also a comprehensive walkthrough of CCS Theia and a MSPM0 board here which may be useful reading. I will go through a similar walkthrough for a blank project.
 
