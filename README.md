@@ -10,7 +10,7 @@ Being brand new, there's not a lot of public designs done that aren't hefty laun
 I was motivated to do a project to make myself a tiny litle M0 dev board similar to the [STM Nucleo boards.](https://www.st.com/content/ccc/resource/technical/document/data_brief/b1/d8/13/d4/b0/b7/4b/6e/DM00214578.pdf/files/DM00214578.pdf/jcr:content/translations/en.DM00214578.pdf)
 
 
-<img src="img/NUCLEO-F303K8.jpg" alt="drawing" width="600"/>
+<img src="img/NUCLEO-F303K8.jpg" alt="drawing" width="200"/>
 
 
 Instead of making large bulky M0 launchpad, I'll make a very minimalist board with basic GPIO pins and a programming header.
