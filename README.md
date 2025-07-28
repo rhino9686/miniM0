@@ -73,31 +73,63 @@ There's also a comprehensive walkthrough of CCS Theia and a MSPM0 board here whi
 
 <img src="img/CCS_p1.png" alt="drawing" width="600"/>
 
+**Page 2: select "empty_driverlib.src".**
+**You can name your project whatever you want, and pick the CCS_TI Arm Clang Compiler.**
+
 <img src="img/CCS_p2.png" alt="drawing" width="600"/>
+
+**You'll now have this README page and some tabs on the left.**
+**The one you want to select is the "empty.syscfg".**
 
 <img src="img/CCS_p3.png" alt="drawing" width="600"/>
 
+**This is where we se the configuration GUI, where we can activate all sorts of peripherals and generate code for drivers.**
+
+<img src="img/CCS_p3.5.png" alt="drawing" width="600"/>
+
+**We will need to make one small adjustment, as we need to switch the IDE ofer to the RHBR package with 32 pins.**
 <img src="img/CCS_p4.png" alt="drawing" width="600"/>
+
+**Hit "switch" and then change the "LQFP-64" option to "VQFN-32"**
 
 <img src="img/CCS_p5.png" alt="drawing" width="600"/>
 
+**Now we have the correct pins that correspond to our schematic symbol**
+
 <img src="img/CCS_p6.png" alt="drawing" width="600"/>
+
+**Now, to start making our modifications**
+**I will activate I2C by pressing the (+) icone next to them**
 
 <img src="img/CCS_p7.png" alt="drawing" width="600"/>
 
+**This will automatically assign the I2C to pins 1(PA0) and 2(PA1). [SDA->PA0 and SCL->PA1]**
+**You can change the pins in the PinMux menu at any time to your preference**
+
 <img src="img/CCS_p8.png" alt="drawing" width="600"/>
+
+**I will also activate the UART pins and accept their default mapping to pins 14(PA10) and 15(PA11). [TX->PA10 and RX->PA11]**
 
 <img src="img/CCS_p9.png" alt="drawing" width="600"/>
 
+**Finally, I will add a couple GPIO outputs for us to seee the output behavior of simple programs**
+**For me, these assigned to pins 6(PA2) and 7(PA3)**
 <img src="img/CCS_p10.png" alt="drawing" width="600"/>
+
+**FThe end result is that your device picture now has a graphical map for pin assignments, a handy tool for your schematic pin assignments Hovering over any of the pins shows its function**
 
 <img src="img/CCS_p11.png" alt="drawing" width="600"/>
 
 <img src="img/CCS_p12.png" alt="drawing" width="600"/>
 
+**We also see that, for the purpose of programming, Pin 24(PA20) is by default reserved for SWCLK, Pin 23(PA19) for SWDIO.**
+**We'll return to this when it comes time to make the programming header**
+
 <img src="img/CCS_p13.png" alt="drawing" width="600"/>
 
 <img src="img/CCS_p14.png" alt="drawing" width="600"/>
+
+
 
 
 
