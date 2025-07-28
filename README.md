@@ -21,48 +21,51 @@ There are quite a few MSPM0 models to choose from. I used the MSPM0G3507 as our 
 
 This can be done with schematic/PCB software of your choosing. I chose to go with KiCAD in this. The first step is importing the MSPM0G3507 schematic symbol and footprint into a blank schematic. I in particular used the *MSPM0G3507SRHBR* package.
 
-<img src="img/blankMCU.png" alt="drawing" width="600"/>
+<img src="img/blankMCU.png" alt="drawing" width="400"/>
 
 ### Part Selections
 
 You will see for an equivalent STM32 processor from STMicro, there is a requirement for heavy input capacitance on the VDD and AVDD pins. MSPM0 has a lesser requirement. One simply needs a small 1-3 capacitors equaling roughly 10 uF, with the option to add more based on your application. I stuck with the basic 10u.
-<img src="img/stm32Cap.png" alt="drawing" width="600"/>
+<img src="img/stm32Cap.png" alt="drawing" width="400"/>
 
 The MSP takes in a VIN range of 1.62-3.6V, so one can easily make a USB port-powered input and step down the voltage to 3.3V.
 
-My design used the basic USB-C (non-PD) port that negotiates a 5V, 3A rail with any common USB-C cord. In any full design, one will want ESD protection for this port, since it connects to an external source of static. I included a basic ESD diote for this, the TPD6E004.
-<img src="img/simpleUSB.png" alt="drawing" width="600"/>
-<img src="img/esdDiode.png" alt="drawing" width="600"/>
+My design used the basic USB-C (non-PD) port that negotiates a 5V, 3A rail with any common USB-C cord. 
+<img src="img/simpleUSB.png" alt="drawing" width="400"/>
+
+In any full design, one will want ESD protection for this port, since it connects to an external source of static. I included a basic ESD diote for this, the TPD6E004.
+
+<img src="img/esdDiode.png" alt="drawing" width="400"/>
 
 Finally, I have an LDO that takes the voltage down from 5V to 3.3V for the MSPM0. I used the TPS7A20 for this.
-<img src="img/LDO.png" alt="drawing" width="600"/>
+<img src="img/LDO.png" alt="drawing" width="400"/>
 
 
 Once all the main components are gathered on the same schematic as this, one can proceed to fill out all the proper connections and passives.
-<img src="img/full_schem_unrouted.png" alt="drawing" width="600"/>
+<img src="img/full_schem_unrouted.png" alt="drawing" width="400"/>
 
 ### First Connections
 
 For the USB-C port, I recreated the connections found at this link: https://forum.digikey.com/t/simple-way-to-use-usb-type-c-to-get-5v-at-up-to-3a-15w/7016
 
 
-<img src="img/usbMapping.png" alt="drawing" width="600"/>
+<img src="img/usbMapping.png" alt="drawing" width="400"/>
 
-<img src="img/myUSBC.png" alt="drawing" width="600"/>
+<img src="img/myUSBC.png" alt="drawing" width="400"/>
 
 I also wired the 5V line to the ESD diode to protect against voltage spikes from connecting the USB cable.
 
-<img src="img/finishedESD.png" alt="drawing" width="600"/>
+<img src="img/finishedESD.png" alt="drawing" width="400"/>
 
 Note: If you were using the D+ and D- lines of the USB port, you'd connect them to these IOx pins, but we left them floating here. The CC1 and CC2 lines can alos be protected optionally, but that's out of the scope of this design.
 
 Finally, we connect the 5V line to a 5V-3V3 LDO to provide a suitable voltage for our M0 MCU.
 
-<img src="img/LDO_popped.png" alt="drawing" width="600"/>
+<img src="img/LDO_popped.png" alt="drawing" width="400"/>
 
 That's the basics. With these connectiond, our MCU is good to power up. It won't do too much until we add some way of connecting GPIO, activating peripherals, and adding a programming header.
 
-<img src="img/processorSchem.png" alt="drawing" width="600"/>
+<img src="img/processorSchem.png" alt="drawing" width="400"/>
 
 To make things easier organizationally, I like to add labels to every MCU pin, then reference label in other parts of schematic.
 
