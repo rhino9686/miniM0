@@ -56,17 +56,17 @@ For the USB-C port, I recreated the connections found at this link: https://foru
 
 I also wired the 5V line to the ESD diode to protect against voltage spikes from connecting the USB cable.
 
-<img src="img/finishedESD.png" alt="drawing" width="400"/>
+<img src="img/finishedESD.png" alt="drawing" width="300"/>
 
 Note: If you were using the D+ and D- lines of the USB port, you'd connect them to these IOx pins, but we left them floating here. The CC1 and CC2 lines can alos be protected optionally, but that's out of the scope of this design.
 
 Finally, we connect the 5V line to a 5V-3V3 LDO to provide a suitable voltage for our M0 MCU.
 
-<img src="img/LDO_popped.png" alt="drawing" width="400"/>
+<img src="img/LDO_popped.png" alt="drawing" width="450"/>
 
 That's the basics. With these connectiond, our MCU is good to power up. It won't do too much until we add some way of connecting GPIO, activating peripherals, and adding a programming header.
 
-<img src="img/processorSchem.png" alt="drawing" width="400"/>
+<img src="img/processorSchem.png" alt="drawing" width="600"/>
 
 To make things easier organizationally, I like to add labels to every MCU pin, then reference label in other parts of schematic.
 
